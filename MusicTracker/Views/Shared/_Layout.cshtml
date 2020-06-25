@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title - My ASP.NET Application</title>
+	<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat&family=Oswald&display=swap" rel="stylesheet">
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				@Html.ActionLink("Music Tracker", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li>@Html.ActionLink("Add a Gig", "Create", "Gig")</li>
+				</ul>
+				@Html.Partial("_LoginPartial")
+			</div>
+		</div>
+	</div>
+	<div class="container body-content">
+		@RenderBody()
+		<hr />
+		<footer>
+			<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+		</footer>
+	</div>
+
+	@Scripts.Render("~/bundles/lib")
+	@RenderSection("scripts", required: false)
+
+<script type="text/x-template" id="notifications-template">
+	<ul class="notification">
+		<%
+		_.each(notifications, function(note) {
+		if (note.type==1){
+			%>
+			<li><span class="highlight"><%= note.gigDto.artist.name %> </span> has canceled the gig at <%= note.gigDto.placeGig %> at <%= moment(note.gigDto.dateTime).format("Do MMM YYYY h:mm")  %></li>
+			<%
+		}
+		else if (note.type==2){
+			var changes =[], oldVal =[], newVal=[];
+
+			if (note.oldGigPlace != note.gigDto.gigPlace) {
+				changes.push('place');
+				oldVal.push(moment(note.oldGigPlace).format("Do MMM YYYY h:mm")) ;
+				newVal.push(moment(note.gigDto.gigPlace).format("Do MMM YYYY h:mm"));
+			}
+
+			if (note.oldDateTime != note.gigDto.dateTime) {
+				changes.push('date/time');
+				oldVal.push(moment(note.oldDateTime).format("Do MMM YYYY h:mm")) ;
+				newVal.push(moment(note.gigDto.dateTime).format("Do MMM YYYY h:mm")) ;
+			}
+
+			%>
+			<li><span class="highlight"><%= note.gigDto.artist.name %></span> has changed the <%= changes.join('and') %> of the gig from <%= oldVal.join('/') %> to <%= newVal.join('/') %></li>
+			<%
+			}
+		else if (note.type==3){
+			%>
+			<li><span class="highlight"><%= note.gigDto.artist.name %> </span>has created the gig at <%= note.gigDto.placeGig %> at <%= moment(note.gigDto.dateTime).format("Do MMM YYYY h:mm")  %></li>
+			<%
+		}
+		})
+		%>
+	</ul>
+	</script>
+<script>
+	$(document).ready(function() {
+		$.getJSON("/api/notifications", function (notification) {
+			if (notification.lenght === 0)
+				return;
+
+			$(".js-notification-count")
+				.text(notification.length)
+				.removeClass("hide")
+			.addClass("animated bounceInDown");
+
+			$(".notifications").popover({
+				html: true,
+				title: "Notifications",
+				content: function () {
+					var compiled = _.template($("#notifications-template").html());
+					return compiled({ notifications: notification});
+				},
+				placement: "bottom",
+				template: '<div class="popover popover-notifications" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+			});
+		});
+	})
+</script>
+</body>
+</html>

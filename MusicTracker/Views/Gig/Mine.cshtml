@@ -1,0 +1,76 @@
+﻿@model IEnumerable<MusicTracker.Models.Gig>
+@{
+	ViewBag.Title = "Mine";
+}
+
+<h1>My upcoming Gigs</h1>
+
+<ul class="gigs voffset5">
+	@foreach (var gig in Model)
+	{
+		<li>
+			<div class="date">
+				<div class="year">@gig.DateTime.ToString("yyyy ")</div>
+				<div class="month">@gig.DateTime.ToString("MMM")</div>
+				<div class="day">@gig.DateTime.ToString("d ")</div>
+			</div>
+			<div class="details">
+				<span class="place">
+					@gig.GigPlace
+				</span>
+				<span class="genre">
+					@gig.Genre.Name
+				</span>
+				<div class="actions">
+					<a href="@Url.Action("Edit", "Gig", new {id = gig.Id})">
+						Edit
+					</a> |
+					<a href="#" class="js-cancel-gig" data-gig-id="@gig.Id">
+						Cancel
+					</a>
+				</div>
+			</div>
+		</li>
+	}
+</ul>
+
+@section scripts
+{
+	<script>
+		$(document).ready(function() {
+			$(".js-cancel-gig").click(function(e) {
+				var uriItem = $(e.target);
+
+				bootbox.confirm({
+					message: "Are you sure to cancel this gig?",
+					buttons: {
+						confirm: {
+							label: 'Yes',
+							className: 'btn-danger'
+						},
+						cancel: {
+							label: 'No',
+							className: 'btn-default'
+						}
+					},
+					callback: function(result) {
+						if (result) {
+							$.ajax({
+									url: "/api/gig/" + uriItem.attr("data-gig-id"),
+									method: "DELETE"
+								})
+								.done(function() {
+									uriItem.parents("li").fadeOut(function() {
+										$(this).remove();
+									});
+								})
+								.fail(function() {
+									console.log("Task failed successfully...");
+								});
+						}
+					}
+				});
+			});
+		});
+	</script>
+}

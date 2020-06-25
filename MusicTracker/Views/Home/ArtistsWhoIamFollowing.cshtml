@@ -1,0 +1,18 @@
+﻿
+@model MusicTracker.ViewModels.ArtistViewModel
+@{
+    ViewBag.Title = "ArtistsWhoIamFollowing";
+}
+
+<h1>Artists I'm following</h1>
+
+<ul class="gigs voffset5">
+	@foreach (var art in Model.Artists)
+	{
+		<div class="details">
+			<span class="artist">
+				@art.Name
+			</span>
+		</div>
+	}
+</ul>

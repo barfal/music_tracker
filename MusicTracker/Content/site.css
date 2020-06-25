@@ -1,0 +1,299 @@
+﻿body {
+	padding-top: 90px;
+	padding-bottom: 20px;
+	font-size: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+	white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+	max-width: 280px;
+}
+
+.voffset {margin-top: 2px;}
+.voffset1 {margin-top: 5px;}
+.voffset2 {margin-top: 10px;}
+.voffset3 {margin-top: 20px;}
+.voffset4 {margin-top: 40px;}
+.voffset5 {margin-top: 50px;}
+
+
+/* Override Bootstrap */
+
+body {
+	font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.navbar-inverse {
+	background-color: #f18867;
+	border-color: #f18867;
+	font-family: Lobster;
+	font-weight: 500;
+}
+
+.dropdown-item {
+	color: #65587f;
+	font-size: 17px;
+}
+
+.dropdown-item:hover {
+	color: #50bda1;
+	background-color: transparent;
+	text-shadow: 0 0 5px #000;
+	text-decoration: none;
+}
+
+.dropdown-menu {
+	background-color: #f18867;
+	border-color: #f18867;
+	padding: 6px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+	color: #65587f;
+	font-size: 25px;
+}
+
+.navbar-inverse .navbar-brand {
+	color: #fff;
+	font-size: 200%;
+	text-shadow: 0 0 5px #000; 
+}
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+	color: #e85f99;
+	background-color: transparent;
+	text-shadow: 0 0 5px #000;
+}
+
+
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
+	color: #50bda1;
+	background-color: transparent;
+}
+
+.form-group {
+	margin-bottom: 25px;
+	font-family: 'Oswald', sans-serif;
+}
+
+.form-control {
+	font-size: 14px;
+	font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #020;
+	padding: 1px 12px;
+}
+
+h1, h2 
+{
+	font-family: 'Oswald', sans-serif;
+	margin-bottom: 20px;
+}
+
+label {
+	font-weight: lighter;
+	font-style: italic;
+	margin-bottom: 1px;
+}
+
+.btn {
+	font-family: 'Oswald', sans-serif;
+	font-style: italic;
+	/* text-shadow: 0 0 4px #000; */
+	padding: 5px 20px 5px 20px;
+	/* border: 0px; */
+}
+
+.rounded-btn-small {
+	padding: 5px;
+	font-size: 11px;
+	font-family: 'Montserrat', sans-serif;
+	font-style: normal;
+	-ms-border-radius: 8px;
+	background-color: #f7f7f7;
+	border-radius: 8px;
+	margin: 5px 5px;
+}
+
+.btn-primary {
+	background-color: #0779e4;
+}
+
+.btn-primary:hover {
+	background-color: #342ead;
+}
+
+.form-control:focus {
+	border-color: #f18867;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border-width: 2px;
+}
+
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+	color: #e85f99;
+	background-color: #f18867;
+	text-shadow: 0 0 5px #000;
+}
+
+.navbar-inverse .notifications .badge {
+	text-shadow: none;
+	background-color: #65587f;
+	position: absolute;
+	right: 0px;
+	bottom: 10px;
+}
+	.navbar-inverse .notifications .badge:hover {
+		text-shadow: none;
+	}
+
+.navbar-inverse .navbar-toggle:hover {
+	background-color: #e85f99;
+	border: none;
+}
+
+.navbar-inverse .navbar-toggle {
+	border: none;
+}
+
+
+.btn-default:hover {
+	font-weight: bold;
+}
+
+.logoff:hover {
+	color: red;
+}
+
+div > span > .btn-sm {
+	font-style: normal;
+	color: #65587f
+}
+
+.btn-link:hover, .btn-link:focus {
+	color: #f18867;
+}
+
+#Place-error {
+	color: red;
+}
+
+
+/* Page specyfic styles */
+
+.gigs {
+	list-style: none;
+}
+
+.gigs > li {
+	position: relative;
+	margin: 30px;
+
+}
+
+.gigs > li .date {
+	color: white;
+	text-align: center;
+	width: 60px;
+}
+
+.gigs > li .date .year {
+	font-size: 11px;
+	padding: 2px;
+	-ms-border-radius: 5px;
+	border-radius: 8px 8px 0 0;
+	background: #65587f;
+}
+
+.gigs > li .date .month {
+	text-transform: uppercase;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 2px 6px 2px 6px;
+	background: #e85f99;
+}
+
+.gigs > li .date .day {
+	background: #f7f7f7;
+	color: #333;
+	font-size: 15px;
+	padding: 2px;
+	-ms-border-radius: 0px 0px 8px 8px;
+	border-radius: 0px 0px 8px 8px;
+}
+
+.gigs > li .details {
+	position: absolute;
+	top: 0;
+	left: 70px;
+}
+
+.gigs > li .details .artist {
+	font-weight: bold;
+	display: block;
+}
+
+.gigs > li .details .place {
+	font-size: 15px;
+	display: block;
+}
+
+
+.gigs > li .details .genre {
+	font-style: italic;
+	font-size: 15px;
+}
+
+.gigs > li .actions {
+	display: none;
+	font-size: 15px;
+}
+	.gigs > li:hover .actions {
+		 display: block;
+	}
+
+
+/* Notification popover */
+
+
+.popover-notifications .popover-content {
+	padding: 0;
+}
+
+.popover-notifications ul.notification {
+	list-style: none;
+	padding-left: 0;
+}
+
+.popover-notifications ul.notification > li {
+	border-bottom: 1px solid #ddd;
+	padding: 10px;
+}
+
+	.popover-notifications ul.notification > li:last-child {
+		border-bottom: none;
+	}
+
+	.popover-notifications ul.notification .highlight {
+		font-weight: bold;
+	}
+
+/* Search gig */
+#search-gig {
+	width: 300px;
+}
